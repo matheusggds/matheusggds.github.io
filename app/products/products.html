@@ -1,0 +1,38 @@
+<h1>Products</h1>
+
+<a ui-sref="products.add" class="btn btn-default">Add Product</a>
+
+<table class="table products-table">
+    <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Qtd</th>
+        <th>Descrição</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="product in $ctrl.products">
+        <td>{{product.name}}</td>
+        <td>R${{product.price}}</td>
+        <td>
+            {{product.quantity}}
+            <button class="btn btn-xs " ng-click="$ctrl.increaseQuantity(product)">
+                +
+            </button>
+            <button class="btn btn-xs " ng-click="$ctrl.decreaseItemAmount(product)">
+                -
+            </button>
+            <button class="btn btn-xs " ng-click="$ctrl.addtoCart(product)" ng-show="product.showAddToCart && !product.addedToCart">
+                Add to 
+            </td>
+            <td>{{product.description}}</td>
+            <td>
+                <a ui-sref="products.edit({ id: product.id })" class="btn btn-xs btn-warning btn-block">Editar</a>
+                <a ng-click="$ctrl.deleteProduct(product.id)" class="btn btn-xs btn-danger btn-block">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+    <div ui-view class="view-side-form"></div>
+
+    
+    <cart-view></cart-view>

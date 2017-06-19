@@ -1,0 +1,29 @@
+<h1>{{$ctrl.title}}</h1>
+
+<h4 class="text-center" ng-if="$ctrl.cart.length == 0">Seu carrinho está vazio.</h4>
+
+<table ng-if="$ctrl.cart.length > 0" class="table products-table">
+  <tr>
+    <th>Nome</th>
+    <th>Preço</th>
+    <th>Qtd</th>
+    <th>Total</th>
+  </tr>
+  <tr ng-repeat="item in $ctrl.cart">
+    <td>{{item.name}}</td>
+    <td>R${{item.price}}</td>
+    <td>
+      {{item.quantity}}
+      <button class="btn btn-xs " ng-click="$ctrl.increaseQuantity(item)">
+        +
+      </button>
+      <button class="btn btn-xs " ng-click="$ctrl.decreaseItemAmount(item)">
+        -
+      </button>
+      <button class="btn btn-xs " ng-click="$ctrl.removefromCart(item)">
+        Remover
+      </button>
+    </td>
+    <td></td>
+  </tr>
+</table>
